@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>modelviewer</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+</head>
+<body style="height: 100vh">
+    <video id="video" autoplay playsinline style="position:fixed;height:100%;width:100%;"></video>
+    <model-viewer camera-controls camera-orbit="20%" src="src/models/scene.gltf" alt="A 3D model of a ring" style="width:100px;height:100px;left: 50%;top:50%;transform: translate(-50%, -50%);"></model-viewer>
+    <script>
+      let video = document.getElementById('video');
+
+      const constraints = {
+        video: {
+          facingMode: 'environment',
+          deviceId: { exact: '' }
+        },
+        audio: false
+      };
+
+      navigator.mediaDevices
+        .getUserMedia(constraints)
+        .then(stream => {
+          video.srcObject = stream;
+        })
+    </script>
+</body>
+<style>
+
+</style>
+</html>
